@@ -12,10 +12,10 @@ namespace Ecom.Infrastructure.Data
     public class AppDBContext : DbContext
     {
         public AppDBContext(DbContextOptions options):base(options) { }
-        public virtual DbSet<Photo> Photos { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public  virtual DbSet<Category> Category { get; set; }
-        protected void OnModelCreating(ModelBuilder builder) { 
+        //public virtual DbSet<Photo> Photos { get; set; }
+        //public virtual DbSet<Product> Products { get; set; }
+        //public  virtual DbSet<Category> Category { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder) { 
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

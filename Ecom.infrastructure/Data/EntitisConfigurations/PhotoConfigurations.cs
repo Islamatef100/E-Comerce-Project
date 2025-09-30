@@ -14,6 +14,7 @@ namespace Ecom.Infrastructure.Data.EntitisConfigurations
         public void Configure(EntityTypeBuilder<Photo> builder)
         {
             builder.Property(x => x.ImageName).IsRequired();
+            builder.ToTable("Photos");
         }
     }
 }

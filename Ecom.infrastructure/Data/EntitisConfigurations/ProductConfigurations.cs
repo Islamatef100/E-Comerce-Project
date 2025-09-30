@@ -15,6 +15,7 @@ namespace Ecom.Infrastructure.Data.EntitisConfigurations
         {
             builder.Property(x => x.Price).IsRequired();
             builder.Property(x => x.name).IsRequired();
+            builder.ToTable("Products");
         }
     }
 }

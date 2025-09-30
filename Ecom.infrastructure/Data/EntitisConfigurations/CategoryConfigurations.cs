@@ -15,6 +15,7 @@ namespace Ecom.Infrastructure.Data.EntitisConfigurations
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
             builder.Property(x=>x.Description).IsRequired();
+            builder.ToTable("Categories");
         }
     }
 }

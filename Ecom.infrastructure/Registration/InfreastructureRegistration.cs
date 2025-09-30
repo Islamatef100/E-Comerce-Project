@@ -21,7 +21,7 @@ namespace Ecom.Infrastructure.Registration
             services.AddScoped<IProductReposatory, ProductReposatory>();
             services.AddScoped<ICategoryReposatory, CategoryReposatory>();
             services.AddScoped<IPhotoReposatory, PhotoReposatory>();
-            services.AddDbContext<AppDBContext>(builder => builder.UseSqlServer(configuration.GetConnectionString("local")));
+            services.AddDbContext<AppDBContext>(builder => builder.UseSqlServer("Server=.;Database=EComerce;Integrated Security=True;TrustServerCertificate=True"));
             return services;
         }
     }

@@ -1,5 +1,6 @@
-using Microsoft.AspNetCore.Builder;
 using Ecom.Infrastructure.Registration;
+using Microsoft.AspNetCore.Builder;
+using AutoMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,7 +10,8 @@ builder.Services.AddControllers();
 //builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-object value = builder.Services.Register(builder.Configuration);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.Register(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
