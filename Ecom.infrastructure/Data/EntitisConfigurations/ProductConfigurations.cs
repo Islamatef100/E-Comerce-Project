@@ -13,7 +13,7 @@ namespace Ecom.Infrastructure.Data.EntitisConfigurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(x => x.Price).IsRequired();
+            builder.Property(x => x.NewPrice).IsRequired();
             builder.Property(x => x.name).IsRequired();
             builder.ToTable("Products");
         }

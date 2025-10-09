@@ -1,6 +1,8 @@
 ﻿using Ecom.Core.Interfaces;
+using Ecom.Core.Services;
 using Ecom.Infrastructure.Data;
 using Ecom.Infrastructure.Reposatories;
+using Ecom.Infrastructure.Reposatories.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,7 @@ namespace Ecom.Infrastructure.Registration
             services.AddScoped<ICategoryReposatory, CategoryReposatory>();
             services.AddScoped<IPhotoReposatory, PhotoReposatory>();
             services.AddDbContext<AppDBContext>(builder => builder.UseSqlServer("Server=.;Database=EComerce;Integrated Security=True;TrustServerCertificate=True"));
+            services.AddSingleton<IImageMangmentService, ImageMangmentService>();
             return services;
         }
     }

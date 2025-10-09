@@ -1,4 +1,5 @@
-﻿using Ecom.Core.Entities.Product;
+﻿using Ecom.Core.DTO;
+using Ecom.Core.Entities.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace Ecom.Core.Interfaces
 {
     public interface IProductReposatory : IGenericReposetory<Product>
     {
+        Task<bool> Add(AddProductDTO request);
+        Task<bool> Update(UpdateProductDTO request);
     }
 }

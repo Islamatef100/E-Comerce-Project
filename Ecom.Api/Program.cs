@@ -1,6 +1,7 @@
+using AutoMapper;
 using Ecom.Infrastructure.Registration;
 using Microsoft.AspNetCore.Builder;
-using AutoMapper;
+using Microsoft.Extensions.FileProviders;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddSingleton<IFileProvider>(
+    new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")
+    )
+);
+
 builder.Services.Register(builder.Configuration);
 var app = builder.Build();
 

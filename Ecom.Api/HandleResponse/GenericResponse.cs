@@ -6,9 +6,9 @@ namespace Ecom.Api.HandleResponse
 {
     public static class GenericResponse
     {
-        public static ActionResult handleResponse(this ControllerBase _controller , int StatusCode , string? Message = null)
+        public static ActionResult handleResponse(this ControllerBase _controller, int StatusCode, string? Message = null, object returnData = null)
         {
-            if(Message is  null)
+            if (Message is null)
             {
                 Message = StatusCode switch
                 {
@@ -20,7 +20,9 @@ namespace Ecom.Api.HandleResponse
                     _ => null,
                 };
             }
-            if(StatusCode == 200)
+            if (returnData is not null)
+                return _controller.Ok(returnData);
+            if (StatusCode == 200)
                 return _controller.Ok(Message);
             else
                 return _controller.BadRequest(Message);

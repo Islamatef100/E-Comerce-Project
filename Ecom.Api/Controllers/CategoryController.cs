@@ -3,7 +3,10 @@ using Ecom.Api.HandleResponse;
 using Ecom.Core.DTO;
 using Ecom.Core.Entities.Product;
 using Ecom.Core.Interfaces;
+using Ecom.Infrastructure.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Econ.Api.CategoryController
 {
@@ -11,12 +14,12 @@ namespace Econ.Api.CategoryController
     [Route("Api/[controller]")]
     public class CategoryController(ICategoryReposatory CategoryReposatory, IMapper mapper) : ControllerBase
     {
-        
+
         [HttpGet("get-a-all-categories")]
         public async Task<ActionResult> GetAllCAtegories()
         {
             var result = await CategoryReposatory.GetAllAsync();
-            if (result is not  null)
+            if (result is not null)
                 return Ok(result);
             else
                 return BadRequest();
@@ -38,7 +41,7 @@ namespace Econ.Api.CategoryController
                 Name = request.Name,
                 Description = request.Description
             };
-             await CategoryReposatory.Add(entity);
+            await CategoryReposatory.Add(entity);
             return Ok();
 
         }
@@ -57,14 +60,14 @@ namespace Econ.Api.CategoryController
             return Ok();
 
         }
-        [HttpGet("get-a-all-categories-with-products")]
-        public async Task<ActionResult> GetAllCAtegoriesWithProducts()
-        {
-            var result = await CategoryReposatory.GetAllAsync(x=>x.products);
-            if (result is not null)
-                return this.handleResponse(200);
-            else
-                return this.handleResponse(400);
-        }
+        //[HttpGet("get-a-all-categories-with-products")]
+        //public async Task<ActionResult> GetAllCAtegoriesWithProducts()
+        //{
+        //    var result = await CategoryReposatory.GetAllAsync(x => x.Products);
+        //    if (result is not null)
+        //        return Ok(result);
+        //    else
+        //        return this.handleResponse(400);
+        //}
     }
 }

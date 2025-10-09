@@ -38,11 +38,12 @@ namespace Ecom.Infrastructure.Reposatories
 
         public async Task<IReadOnlyList<T>> GetAllAsync(params Expression<Func<T, object>>[] includes)
         {
+            var query = context.Set<T>().AsQueryable();
             foreach (var item in includes)
             {
-                context.Set<T>().Include(item);
+                query =  context.Set<T>().Include(item);
             }
-            var entities = await context.Set<T>().AsNoTracking().ToListAsync();
+            var entities = await query.ToListAsync();
             return entities;
         }
 
